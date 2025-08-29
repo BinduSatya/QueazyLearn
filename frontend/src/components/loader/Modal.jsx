@@ -1,6 +1,7 @@
 import React from "react";
 
 const Modal = ({ children, isOpen, onClose, title, hideHeader }) => {
+  if (!isOpen) return null; 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-black/40">
       <div className="relative flex flex-col bg-white shadow-lg rounded-lg overflow">
