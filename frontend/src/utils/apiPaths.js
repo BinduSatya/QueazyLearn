@@ -1,20 +1,31 @@
-const apiPaths = () => {
-  return (
-    <ul>
-      <li>
-        <code>/api/v1/courses</code> - Get all courses
-      </li>
-      <li>
-        <code>/api/v1/courses/:id</code> - Get course by ID
-      </li>
-      <li>
-        <code>/api/v1/users</code> - Get all users
-      </li>
-      <li>
-        <code>/api/v1/users/:id</code> - Get user by ID
-      </li>
-    </ul>
-  );
-};
+export const BASE_URL = "http://localhost:4000";
 
-export default apiPaths;
+export const API_PATHS = {
+  AUTH: {
+    REGISTER: "/api/auth/register",
+    LOGIN: "/api/auth/login",
+    GET_PROFILE: "/api/auth/profile",
+  },
+
+  IMAGE: {
+    UPLOAD_IMAGE: "/api/auth/upload-image",
+  },
+
+  AI: {
+    GENERATE_QUESTIONS: "/api/ai/generate-questions",
+    GENERATE_EXPLANATION: "/api/ai/generate-explanation",
+  },
+
+  SESSION: {
+    CREATE: "/api/sessions/create",
+    GET_ALL: "/api/sessions/my-sessions",
+    GET_ONE: (id) => `/api/sessions/${id}`,
+    DELETE: (id) => `/api/sessions/${id}`,
+  },
+
+  QUESTION: {
+    ADD_TO_SESSION: "/api/questions/add",
+    PIN: (id) => `/api/questions/${id}/pin`,
+    UPDATE_NOTE: (id) => `/api/questions/${id}/note`,
+  },
+};

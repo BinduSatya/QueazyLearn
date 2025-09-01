@@ -12,7 +12,10 @@ import sessionRoutes from "./routes/sessionRoutes.js";
 import questionRoutes from "./routes/questionRoutes.js";
 
 import { protect } from "./middlewares/authMiddleware.js";
-import { generateConceptExplanation, generateInterviewQuestions } from "./controllers/aiController.js";
+import {
+  generateConceptExplanation,
+  generateInterviewQuestions,
+} from "./controllers/aiController.js";
 
 dotenv.config();
 
