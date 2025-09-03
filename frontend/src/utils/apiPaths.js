@@ -1,4 +1,7 @@
-export const BASE_URL = "http://localhost:4000";
+export const BASE_URL = [
+  "https://queazy-learn.vercel.app",
+  "http://localhost:4000",
+];
 
 export const API_PATHS = {
   AUTH: {

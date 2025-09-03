@@ -1,8 +1,11 @@
 import axios from "axios";
 import { BASE_URL } from "./apiPaths";
 
+console.log("NODE_ENV:", import.meta.env.MODE);
+console.log("API Base URL:", import.meta.env.VITE_BASE_URL);
+
 const axiosInstance = axios.create({
-  baseURL: BASE_URL,
+  baseURL: import.meta.env.VITE_BASE_URL,
   timeout: 80000,
   headers: {
     Accept: "application/json",

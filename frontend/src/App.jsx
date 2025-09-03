@@ -2,8 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
-// import Login from "./pages/Auth/Login.jsx";
-// import SignUp from "./pages/Auth/SignUp.jsx";
 import LandingPage from "./pages/LandingPage.jsx";
 import Dashboard from "./pages/Home/Dashboard.jsx";
 import InterviewPrep from "./pages/InterviewPrep/interviewPrep.jsx";
