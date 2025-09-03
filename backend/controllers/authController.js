@@ -12,7 +12,7 @@ const generateToken = (id) => {
 const registerUser = async (req, res) => {
   try {
     const { name, email, password, profileImageUrl } = req.body;
-    console.log(name, email, password, "pro ",profileImageUrl);
+    console.log(name, email, password, "pro ", profileImageUrl);
 
     const existingUser = await user.findOne({ email });
     if (existingUser) {
@@ -30,7 +30,7 @@ const registerUser = async (req, res) => {
     });
 
     const token = generateToken(newUser._id);
-    
+
     res.status(201).json({
       _id: newUser._id,
       name: newUser.name,
@@ -84,4 +84,30 @@ const getUserProfile = async (req, res) => {
   }
 };
 
-export { registerUser, loginUser, getUserProfile };
+const postProfileImg = async (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ message: "No image uploaded" });
+  }
+
+  try {
+    console.log("Uploading image to Cloudinary...");
+    const uploadResponse = await cloudinary.uploader.upload(
+      `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`,
+      { folder: "queazyLearnProfiles" }
+    );
+
+    const imageUrl = uploadResponse.secure_url;
+    console.log("Image uploaded successfully:", imageUrl);
+
+    return res
+      .status(200)
+      .json({ message: "Image uploaded successfully", imageUrl });
+  } catch (error) {
+    console.error("Cloudinary upload error:", error);
+    res
+      .status(500)
+      .json({ message: "Image upload failed", error: error.message });
+  }
+};
+
+export { registerUser, loginUser, getUserProfile, postProfileImg };

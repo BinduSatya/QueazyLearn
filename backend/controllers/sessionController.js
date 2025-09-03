@@ -12,7 +12,7 @@ export const createSession = async (req, res) => {
 
     const user = req.user._id;
     const session = await Session.create({
-      userId: user,
+      user: user,
       role,
       experience,
       topicsToFocus,
@@ -50,8 +50,8 @@ export const createSession = async (req, res) => {
 // Get all sessions for a user
 export const getUserSessions = async (req, res) => {
   try {
-    const userId = req.user._id;
-    const sessions = await Session.find({ userId })
+    const user = req.user._id;
+    const sessions = await Session.find({ user })
       .sort({ createdAt: -1 })
       .populate("questions");
     res
@@ -66,10 +66,11 @@ export const getUserSessions = async (req, res) => {
 export const getSessionById = async (req, res) => {
   try {
     const { id } = req.params;
+    console.log("fetching current session again", id);
     const session = await Session.findById(id)
       ?.populate({
         path: "questions",
-        option: { sort: { isPinned: -1, createdAt: 1 } },
+        options: { sort: { isPinned: -1, createdAt: 1 } },
       })
       .exec();
 

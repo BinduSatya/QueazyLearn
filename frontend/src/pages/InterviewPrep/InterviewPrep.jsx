@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import moment from "moment";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { LuCircleAlert, LuListCollapse } from "react-icons/lu";
-import SpinnerLoader from "../../components/Loader/SpinnerLoader.jsx";
+import SpinnerLoader from "../../components/loader/SpinnerLoader.jsx";
 import { toast } from "react-hot-toast";
 import DashboardLayout from "../../components/layouts/DashboardLayout.jsx";
 import RoleInfoHeader from "./components/RoleInfoHeader";
@@ -12,6 +12,7 @@ import { API_PATHS } from "../../utils/apiPaths";
 import QuestionCard from "../../components/cards/QuestionCard";
 import Drawer from "../../components/Drawer";
 import SkeletonLoader from "../../components/loader/SkeletonLoader";
+import AIResponsePreview from "./components/AIResponsePreview.jsx";
 
 const InterviewPrep = () => {
   const { sessionId } = useParams();
@@ -67,6 +68,7 @@ const InterviewPrep = () => {
   };
 
   const toggleQuestionPinStatus = async (questionId) => {
+    console.log(questionId);
     try {
       const response = await axiosInstance.post(
         API_PATHS.QUESTION.PIN(questionId)
@@ -75,7 +77,7 @@ const InterviewPrep = () => {
       console.log(response);
 
       if (response.data && response.data.question) {
-        // toast.success('Question Pinned Successfully')
+        toast.success("Question Pinned");
         fetchSessionDetailsById();
       }
     } catch (error) {
@@ -93,11 +95,12 @@ const InterviewPrep = () => {
           role: sessionData?.role,
           experience: sessionData?.experience,
           topicsToFocus: sessionData?.topicsToFocus,
-          numberOfQuestions: 10,
         }
       );
+      console.log("aiResponse", aiResponse);
 
       const generatedQuestions = aiResponse.data;
+      console.log("generatedQuestions", generatedQuestions);
 
       const response = await axiosInstance.post(
         API_PATHS.QUESTION.ADD_TO_SESSION,
@@ -130,18 +133,6 @@ const InterviewPrep = () => {
 
   return (
     <DashboardLayout>
-      <RoleInfoHeader
-        role={sessionData?.role || ""}
-        topicsToFocus={sessionData?.topicsToFocus || ""}
-        experience={sessionData?.experience || "-"}
-        questions={sessionData?.questions?.length || "-"}
-        description={sessionData?.description || ""}
-        lastUpdated={
-          sessionData?.updatedAt
-            ? moment(sessionData.updatedAt).format("Do MMM YYYY")
-            : ""
-        }
-      />
       <RoleInfoHeader
         role={sessionData?.role || ""}
         topicsToFocus={sessionData?.topicsToFocus || ""}

@@ -71,7 +71,6 @@ const QuestionCard = ({
                   onLearnMore();
                 }}
               >
-                {" "}
                 <LuSparkles />
                 <span className="hidden md:block">Learn More</span>
               </button>

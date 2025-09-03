@@ -9,7 +9,7 @@ import {
 const router = Router();
 
 router.post("/add", protect, addQuestionToSession);
-router.get("/", protect, togglePinQuestion);
+router.post("/:id/pin", protect, togglePinQuestion);
 router.put("/:id/note", protect, updateQuestionNote);
 
 export default router;
