@@ -3,7 +3,8 @@ import Session from "../models/Session.js";
 
 // router.post("/add", protect, addQuestionToSession);
 export const addQuestionToSession = async (req, res) => {
-  const { session, questions } = req.body;
+  const { sessionId, questions } = req.body;
+  const session = sessionId;
   if (
     !session ||
     !questions ||
@@ -34,9 +35,12 @@ export const addQuestionToSession = async (req, res) => {
 };
 
 export const togglePinQuestion = async (req, res) => {
-  // Implementation for toggling the pin status of a question
+  console.log("came to toggling");
+
   try {
     const question = await Question.findById(req.params.id);
+    console.log(question.question);
+
     if (!question) {
       return res.status(404).json({ message: "Question not found" });
     }

@@ -40,6 +40,7 @@ export const generateInterviewQuestions = async (req, res) => {
       .trim();
 
     const data = JSON.parse(cleanedText);
+    console.log("data from new question is", data);
     res.status(200).json(data);
   } catch (error) {
     res

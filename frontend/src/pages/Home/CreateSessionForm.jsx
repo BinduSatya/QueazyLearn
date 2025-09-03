@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/inputs/Input.jsx";
 import SpinnerLoader from "../../components/loader/SpinnerLoader.jsx";
-import axios from "axios";
 import axiosInstance from "../../utils/axiosInstance.js";
 import { API_PATHS } from "../../utils/apiPaths.js";
 
@@ -54,6 +53,7 @@ const CreateSessionForm = () => {
         ...formData,
         questions: generatedQuestions,
       });
+      console.log(response?.data);
       if (response.data?.session?._id) {
         navigate(`/interview-prep/${response.data.session._id}`);
       }

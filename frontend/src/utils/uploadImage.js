@@ -10,9 +10,6 @@ const uploadImage = async (imageFile) => {
       API_PATHS.IMAGE.UPLOAD_IMAGE,
       formData
     );
-    console.log(response.data);
-    console.log(response.data.message);
-    console.log(response.data.imageUrl);
     return response.data;
   } catch (error) {
     console.error("Error uploading the image:", error);
