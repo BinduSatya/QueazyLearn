@@ -6,6 +6,7 @@ import {
   LuPinOff,
   LuSparkles,
 } from "react-icons/lu";
+import AIResponsePreview from "../../pages/InterviewPrep/components/AIResponsePreview";
 
 const QuestionCard = ({
   question,

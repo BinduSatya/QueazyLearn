@@ -12,6 +12,8 @@ const generateToken = (id) => {
 const registerUser = async (req, res) => {
   try {
     const { name, email, password, profileImageUrl } = req.body;
+    console.log(name, email, password, "pro ",profileImageUrl);
+
     const existingUser = await user.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
@@ -28,6 +30,7 @@ const registerUser = async (req, res) => {
     });
 
     const token = generateToken(newUser._id);
+    
     res.status(201).json({
       _id: newUser._id,
       name: newUser.name,

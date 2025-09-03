@@ -10,6 +10,7 @@ import moment from "moment";
 import SummaryCard from "../../components/cards/SummaryCard";
 import CreateSessionForm from "./CreateSessionForm";
 import DeleteAlertContent from "../../components/DeleteAlertContent";
+import Modal from "../../components/Modal";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -24,7 +25,8 @@ const Dashboard = () => {
   const fetchAllSessions = async () => {
     try {
       const response = await axiosInstance.get(API_PATHS.SESSION.GET_ALL);
-      setSessions(response.data);
+      setSessions(response.data.sessions);
+      console.log(response.data.sessions);
     } catch (error) {
       console.error("Error fetching session data:", error);
     }

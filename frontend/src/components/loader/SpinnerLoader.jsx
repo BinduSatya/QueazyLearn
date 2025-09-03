@@ -1,5 +1,3 @@
-import React from "react";
-
 const SpinnerLoader = () => {
   const size = 40;
   const color = "#e5a546ff";

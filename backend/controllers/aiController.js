@@ -6,11 +6,18 @@ import {
 } from "../utils/prompts.js";
 
 export const generateInterviewQuestions = async (req, res) => {
+  console.log("came to backend for generating Interview Questions");
+
   const ai = new GoogleGenAI({
     apiKey: process.env.GOOGLE_GEN_AI_API_KEY,
   });
   try {
-    const { role, experience, topicsToFocus, numberOfQuestions } = req.body;
+    const {
+      role,
+      experience,
+      topicsToFocus,
+      numberOfQuestions = 10,
+    } = req.body;
     if (!topicsToFocus || !role || !experience || !numberOfQuestions) {
       return res.status(400).json({ message: "All fields are required" });
     }

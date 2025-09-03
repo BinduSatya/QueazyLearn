@@ -34,11 +34,16 @@ const __dirname = path.dirname(__filename);
 
 app.use(express.json());
 
+app.get("/hello", (req, res) => {
+  console.log("hello from server");
+  res.send("Server is running here");
+});
+
 app.use("/api/auth", authRoutes);
 app.use("/api/sessions", sessionRoutes);
 app.use("/api/questions", questionRoutes);
 
-app.use("/api/ai/generate-question", protect, generateInterviewQuestions);
+app.use("/api/ai/generate-questions", protect, generateInterviewQuestions);
 app.use("/api/ai/generate-explanation", protect, generateConceptExplanation);
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads"), {}));

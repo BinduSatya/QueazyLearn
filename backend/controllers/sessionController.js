@@ -7,6 +7,9 @@ export const createSession = async (req, res) => {
   try {
     const { role, experience, topicsToFocus, description, questions } =
       req.body;
+
+    console.log(role, experience, topicsToFocus, description);
+
     const user = req.user._id;
     const session = await Session.create({
       userId: user,
@@ -15,20 +18,24 @@ export const createSession = async (req, res) => {
       topicsToFocus,
       description,
     });
+    console.log("session created", session);
 
     const questionDocs = await Promise.all(
       questions.map(async (q) => {
         const question = await Question.create({
           session: session._id,
-          question: q,
+          question: q.question,
           answer: q.answer,
         });
+        console.log("question created", question);
         return question._id;
       })
     );
 
     session.questions = questionDocs;
     await session.save();
+    console.log("sessions updated");
+
     res.status(201).json({
       message: "Session created successfully",
       session,

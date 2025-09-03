@@ -5,7 +5,7 @@ import { LuSparkles } from "react-icons/lu";
 
 import Login from "./Auth/Login.jsx";
 import SignUp from "./Auth/SignUp.jsx";
-import Modal from "../components/loader/Modal.jsx";
+import Modal from "../components/Modal.jsx";
 import { useContext } from "react";
 import { UserContext } from "../context/userContext.jsx";
 import ProfileInfoCard from "../components/cards/ProfileInfoCard.jsx";

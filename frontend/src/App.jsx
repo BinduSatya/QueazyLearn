@@ -13,8 +13,6 @@ const App = () => {
   return (
     <UserProvider>
       <div>
-        <h1>Welcome to QueazyLearn</h1>
-        <p className="text-5xl">Your one-stop solution for learning</p>
         <Router>
           <Routes>
             <Route path="/" element={<LandingPage />} />
