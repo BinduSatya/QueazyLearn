@@ -13,7 +13,7 @@ const AIResponsePreview = ({ content }) => {
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           components={{
-            code({ node, className, children, ...props }) {
+            code({ className, children, ...props }) {
               const match = /language-(\w+)/.exec(className || "");
               const language = match ? match[1] : "";
 
@@ -144,12 +144,10 @@ const AIResponsePreview = ({ content }) => {
 function CodeBlock({ code, language }) {
   const [copied, setCopied] = useState(false);
 
-  const copyCode = () => {
-    navigator.clipboard.writeText(code);
+  const copyCode = async () => {
+    await navigator.clipboard.writeText(code);
     setCopied(true);
-    setTimeout(() => {
-      setCopied(false), 2000;
-    });
+    setTimeout(() => setCopied(false), 3000);
   };
   return (
     <div className="relative my-6 rounded-lg overflow-hidden bg-gray-50 border border-gray-200">
