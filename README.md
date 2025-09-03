@@ -1,5 +1,3 @@
-// ...existing code...
-
 # QueazyLearn
 
 A full-stack interview-prep application that uses AI to generate role-specific interview questions and beginner-friendly explanations. The project has a Node/Express backend (with Google Gen AI integration and Cloudinary uploads) and a React + Vite frontend. It supports user authentication, session-based question collections, AI-generated Q&A and explanations, image uploads for user profiles, and basic session management.
