@@ -23,7 +23,7 @@ const App = () => {
         </Router>
 
         <Toaster
-          position="top-right"
+          position="bottom-center"
           reverseOrder={false}
           toastOptions={{ className: "", style: { fontSize: "13px" } }}
         />

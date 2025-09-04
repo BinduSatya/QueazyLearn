@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { APP_FEATURE } from "../utils/data.js";
 import { useNavigate } from "react-router-dom";
-import { LuSparkles } from "react-icons/lu";
+import { LuLogIn, LuSparkles } from "react-icons/lu";
 
 import Login from "./Auth/Login.jsx";
 import SignUp from "./Auth/SignUp.jsx";
@@ -36,10 +36,11 @@ const LandingPage = () => {
               <ProfileInfoCard />
             ) : (
               <button
-                className="bg-linear-to-r from-[#ff9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2.5 rounded-full hover:bg-black hover:text-white border border-white transition-colors cursor-pointer"
+                className="flex items-center gap-2 bg-gradient-to-r from-[#ff9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2.5 rounded-full border border-white transition-colors duration-300 hover:from-[#e99a4b] hover:to-[#ff9324] cursor-pointer hover:text-black hover:bg-white hover:font-bold"
                 onClick={() => setOpenAuthModal(true)}
               >
                 Login/Sign Up
+                <LuLogIn className="text-lg" />
               </button>
             )}
           </header>
@@ -80,11 +81,18 @@ const LandingPage = () => {
       <div className="w-full min-h-full relative z-10 ">
         <div>
           <section className="flex item-center justify-center -mt-36">
-            <img
-              src=""
-              alt="Landing Page Illustration"
-              className="w-[80vw] rounded-lg"
-            />
+            <div className="flex grid grid-cols-2 w-[80vw] rounded-lg">
+              <img
+                src="professor.png"
+                alt="Landing Page Illustration"
+                className="w-[40vw] bg-clip-text bg-[radial-gradient(circle,#ff9324_0%,#fcd760_100%)] bg-[length:200%_200%]"
+              />
+              <img
+                src="student.png"
+                alt="Landing Page Illustration"
+                className="w-[40vw] bg-clip-text bg-[radial-gradient(circle,#ff9324_0%,#fcd760_100%)] bg-[length:200%_200%]"
+              />
+            </div>
           </section>
         </div>
       </div>
@@ -94,9 +102,27 @@ const LandingPage = () => {
             <h2 className="text-2xl font-medium text-center mb-12">
               Features that makes you shine
             </h2>
-            <div className="flex flex-col items-center gap-8">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+            <div className="flex flex-col items-center gap-10">
+              <div className="grid grid-cols-1  md:grid-cols-3 gap-8 w-full">
                 {APP_FEATURE.slice(0, 3).map((feature) => {
+                  return (
+                    <div
+                      key={feature.id}
+                      className="bg-[#FFFEF8] p-6 rounded-xl shadow-xs hover:shadow-lg shadow-amber-100 transition border border-amber-100"
+                    >
+                      <h3 className="text-base font-semibold mb-3">
+                        {feature.title || "HEllo bachey"}
+                      </h3>
+                      <p className="text-gray-600">{feature.description}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-5">
+              {APP_FEATURE.slice(3).map((feature) => {
+                return (
                   <div
                     key={feature.id}
                     className="bg-[#FFFEF8] p-6 rounded-xl shadow-xs hover:shadow-lg shadow-amber-100 transition border border-amber-100"
@@ -105,22 +131,8 @@ const LandingPage = () => {
                       {feature.title}
                     </h3>
                     <p className="text-gray-600">{feature.description}</p>
-                  </div>;
-                })}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {APP_FEATURE.slice(3).map((feature) => {
-                <div
-                  key={feature.id}
-                  className="bg-[#FFFEF8] p-6 rounded-xl shadow-xs hover:shadow-lg shadow-amber-100 transition border border-amber-100"
-                >
-                  <h3 className="text-base font-semibold mb-3">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600">{feature.description}</p>
-                </div>;
+                  </div>
+                );
               })}
             </div>
           </section>
