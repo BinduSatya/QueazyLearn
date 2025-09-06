@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import moment from "moment";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { LuCircleAlert, LuListCollapse } from "react-icons/lu";
 import SpinnerLoader from "../../components/loader/SpinnerLoader.jsx";
 import { toast } from "react-hot-toast";

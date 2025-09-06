@@ -4,7 +4,7 @@ import { Toaster } from "react-hot-toast";
 
 import LandingPage from "./pages/LandingPage.jsx";
 import Dashboard from "./pages/Home/Dashboard.jsx";
-import InterviewPrep from "./pages/InterviewPrep/interviewPrep.jsx";
+import InterviewPrep from "./pages/InterviewPrep/InterviewPrep.jsx";
 import UserProvider from "./context/userContext.jsx";
 
 const App = () => {
