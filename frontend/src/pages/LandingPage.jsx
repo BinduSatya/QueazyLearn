@@ -31,7 +31,12 @@ const LandingPage = () => {
         <div className="w-[500px] h-[500px] bg-amber-200/20 blur-[65px] absolute top-0 left-0" />
         <div className="container mx-auto px-4 pt-6 pb-[200px] relative z-10">
           <header className="flex justify-between items-center mb-16">
-            <div className="text-xl text-black font-bold">Queazy Learn</div>
+            <div className="flex flex-row items-center gap-3 cursor-pointer">
+              <img src="/book-fav-icon.png" alt="Logo" className="w-8 h-8" />
+              <h2 className="text-lg md:text-xl font-medium text-black leading-5">
+                QueazyLearn
+              </h2>
+            </div>
             {user ? (
               <ProfileInfoCard />
             ) : (
@@ -80,15 +85,11 @@ const LandingPage = () => {
       </div>
       <div className="w-full min-h-full relative z-10 ">
         <div>
-          <section className="flex item-center justify-center -mt-36">
-            <div className="flex grid grid-cols-2 w-[80vw] rounded-lg">
+          <section className="flex items-center justify-center -mt-36">
+            {/* <div className="flex items-center justify-center w-[80vw] rounded-lg"> */}
+            <div className="bg-[#FFFEF8] p-6 rounded-xl shadow-xs hover:shadow-lg shadow-amber-100 transition border border-amber-100">
               <img
                 src="professor.png"
-                alt="Landing Page Illustration"
-                className="w-[40vw] bg-clip-text bg-[radial-gradient(circle,#ff9324_0%,#fcd760_100%)] bg-[length:200%_200%]"
-              />
-              <img
-                src="student.png"
                 alt="Landing Page Illustration"
                 className="w-[40vw] bg-clip-text bg-[radial-gradient(circle,#ff9324_0%,#fcd760_100%)] bg-[length:200%_200%]"
               />

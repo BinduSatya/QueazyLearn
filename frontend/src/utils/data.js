@@ -35,4 +35,34 @@ export const APP_FEATURE = [
     description:
       "Access a wide range of learning materials, including articles, videos, and quizzes.",
   },
+  {
+    id: "05",
+    title: "Interactive Learning",
+    description:
+      "Engage with hands-on exercises, coding challenges, and real-world projects.",
+  },
+  {
+    id: "06",
+    title: "Progress Tracking",
+    description:
+      "Monitor your achievements and milestones with detailed progress reports.",
+  },
+  {
+    id: "07",
+    title: "Community Support",
+    description:
+      "Connect with peers and mentors in discussion forums and study groups.",
+  },
+  {
+    id: "08",
+    title: "Expert Guidance",
+    description:
+      "Learn from industry experts and educators through live sessions and Q&As.",
+  },
+  {
+    id: "09",
+    title: "Cross-Platform Access",
+    description:
+      "Continue your learning journey seamlessly across desktop, tablet, and mobile.",
+  },
 ];
