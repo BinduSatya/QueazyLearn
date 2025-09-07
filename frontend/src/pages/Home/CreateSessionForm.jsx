@@ -104,8 +104,12 @@ const CreateSessionForm = () => {
         />
         {error && <p className="text-rose-500 text-sm pb-2.5">{error}</p>}
 
-        <button type="submit" className="" disabled={isLoading}>
-          {isLoading ? <SpinnerLoader /> : "Create Session"}
+        <button
+          type="submit"
+          className="h-12 md:h-12 flex items-center justify-center gap-3 bg-linear-to-r from-[#FF9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2.5 rounded-full hover:text-white transition-colors cursor-pointer"
+          disabled={isLoading}
+        >
+          {isLoading ? <span className="loader"></span> : "Create Session"}
         </button>
       </form>
     </div>

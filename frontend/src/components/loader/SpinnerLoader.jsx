@@ -1,6 +1,6 @@
 const SpinnerLoader = () => {
   const size = 40;
-  const color = "#e5a546ff";
+  const color = "#000000ff" ;
   return (
     <div role="status">
       <svg

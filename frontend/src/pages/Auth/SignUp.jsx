@@ -18,23 +18,28 @@ const SignUp = ({ setCurrentPage }) => {
   const inputRef = useRef(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     let profileImageUrl = "";
     if (!name) {
       setError("Please enter your full name");
+      setLoading(false);
       return;
     }
     if (!validateEmail(email)) {
       setError("Please enter a valid email address");
+      setLoading(false);
       return;
     }
     if (!password) {
       setError("Please enter a password");
+      setLoading(false);
       return;
     }
     console.log("no errors upto data");
@@ -58,16 +63,20 @@ const SignUp = ({ setCurrentPage }) => {
         updateUser(response.data);
         navigate("/dashboard");
       }
+      setLoading(false);
     } catch (error) {
       if (error.response && error.response?.data?.message) {
         setError(error.response?.data?.message);
       } else {
         setError("An unexpected error occurred. Please try again.");
       }
+      setLoading(false);
     }
   };
 
   const handleImageChange = (e) => {
+    e.preventDefault();
+    setLoading(true);
     const file = e.target.files[0];
     if (file) {
       // setImage(file);
@@ -77,6 +86,7 @@ const SignUp = ({ setCurrentPage }) => {
       setProfilePic(file);
       setPreviewUrl(URL.createObjectURL(file));
     }
+    setLoading(false);
   };
 
   const handleRemoveImage = () => {
@@ -157,8 +167,12 @@ const SignUp = ({ setCurrentPage }) => {
             label="Password"
           />
           {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
-          <button onClick={handleSubmit} className="btn-primary">
-            Sign Up
+          <button
+            onClick={handleSubmit}
+            className="btn-primary"
+            disabled={loading}
+          >
+            {loading ? <span className="loader"></span> : "Sign Up"}
           </button>
           <p className="text-[13px] text-slate-800 mt-3">
             Already have an account?{" "}

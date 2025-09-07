@@ -74,7 +74,16 @@ const Dashboard = () => {
               />
             ))
           ) : (
-            <p className="text-center">No sessions available</p>
+            <p className="text-center text-gray-500 whitespace-nowrap">
+              No sessions available,{" "}
+              <span
+                className="font-semibold underline cursor-pointer"
+                onClick={() => setOpenCreateModal(true)}
+              >
+                create one now!
+              </span>{" "}
+              using the New button on the bottom right
+            </p>
           )}
         </div>
         <button

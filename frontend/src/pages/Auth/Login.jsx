@@ -10,20 +10,23 @@ import { UserContext } from "../../context/userContext";
 const Login = ({ setCurrentPage }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     if (!validateEmail(email)) {
       setError("Please enter a valid email address");
+      setLoading(false);
       return;
     }
     if (!password) {
       setError("Please enter a password");
+      setLoading(false);
       return;
     }
     setError(null);
@@ -41,12 +44,14 @@ const Login = ({ setCurrentPage }) => {
         updateUser(response.data);
         navigate("/dashboard");
       }
+      setLoading(false);
     } catch (error) {
       if (error.response && error.response?.data?.message) {
         setError(error.response?.data?.message);
       } else {
         setError("An unexpected error occurred. Please try again.");
       }
+      setLoading(false);
     }
   };
   return (
@@ -73,8 +78,8 @@ const Login = ({ setCurrentPage }) => {
 
         {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
 
-        <button type="submit" className="btn-primary">
-          Login
+        <button type="submit" className="btn-primary" disabled={loading}>
+          {loading ? <span className="loader"></span> : "Login"}
         </button>
 
         <p className="text-[13px] text-slate-800 mt-3">
